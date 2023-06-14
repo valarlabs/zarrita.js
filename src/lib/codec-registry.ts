@@ -10,9 +10,10 @@ registry.set(...default_import("zstd"));
 registry.set(...default_import("gzip"));
 registry.set(...default_import("zlib"));
 registry.set(...default_import("lz4"));
+registry.set(...default_import("wkb"));
 
 function default_import(
-	id: "blosc" | "zlib" | "zstd" | "gzip" | "lz4",
+	id: string,
 	version = "0.2.2",
 ) {
 	let link: string;

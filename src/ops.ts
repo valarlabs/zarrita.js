@@ -176,6 +176,7 @@ function set_from_chunk<D extends Exclude<DataType, ByteStr | UnicodeStr | Bool>
 	const [from, to, step] = proj.to;
 	const [sfrom, _, sstep] = proj.from;
 	const len = indices_len(from, to, step);
+  console.log("src", src.data);
 
 	if (projs.length === 0) {
 		if (

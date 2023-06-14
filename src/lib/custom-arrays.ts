@@ -127,17 +127,27 @@ export class UnicodeStringArray {
 		const offset = this.chars * idx;
 		let result = "";
 		for (let i = 0; i < this.chars; i++) {
-			result += String.fromCodePoint(this._data[offset + i]);
+      if (isNaN(this._data[offset + i])) { 
+        result += ""; 
+      }
+      else {
+        result += String.fromCodePoint(this._data[offset + i]);
+      }
 		}
 		return result.replace(/\u0000/g, "");
 	}
 
-	set(idx: number, value: string): void {
+	set(idx: number, value: string | Int32Array): void {
 		const offset = this.chars * idx;
 		const view = this._data.subarray(offset, offset + this.chars);
 		view.fill(0); // clear current
-		view.set(this.encode(value));
+    if (typeof value == "string") view.set(this.encode(value));
+    else view.set(value);
 	}
+
+  subarray(begin: number, end: number): Int32Array {
+    return this._data.subarray(begin, end);
+  }
 
 	fill(value: string): void {
 		const encoded = this.encode(value);
