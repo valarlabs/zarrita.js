@@ -1,5 +1,5 @@
 // deno-fmt-ignore
-import { BoolArray, ByteStringArray as _ByteStringArray, UnicodeStringArray as _UnicodeStringArray } from "./custom-arrays";
+import { BoolArray, ByteStringArray as _ByteStringArray, UnicodeStringArray as _UnicodeStringArray, VLenByteStringArray as _VLenByteStringArray} from "./custom-arrays";
 
 import type {
 	ChunkQueue,
@@ -70,6 +70,7 @@ const constructors = {
 	b1: BoolArray,
 	U: _UnicodeStringArray,
 	S: _ByteStringArray,
+  O: _VLenByteStringArray,
 };
 
 export function get_ctr<D extends DataType>(dtype: D): TypedArrayConstructor<D> {

@@ -1,4 +1,4 @@
-import type { BoolArray, ByteStringArray, UnicodeStringArray } from "./lib/custom-arrays";
+import type { BoolArray, ByteStringArray, UnicodeStringArray, VLenByteStringArray } from "./lib/custom-arrays";
 
 /** @category Number */
 export type Int8 = "|i1";
@@ -31,6 +31,9 @@ export type UnicodeStr<Bytes extends number = number> = `<U${Bytes}` | `>U${Byte
 /** @category String */
 export type ByteStr<Bytes extends number = number> = `|S${Bytes}`;
 
+/** @category Object*/
+export type PyObject = "|O";
+
 export type NumericDataType =
 	| Int8
 	| Int16
@@ -62,6 +65,7 @@ export type TypedArray<D extends DataType> = D extends Int8 ? Int8Array
 	: D extends Bool ? BoolArray
 	: D extends ByteStr ? ByteStringArray
 	: D extends UnicodeStr ? UnicodeStringArray
+	: D extends PyObject? VLenByteStringArray
 	: never;
 
 export type TypedArrayConstructor<D extends DataType> = {
