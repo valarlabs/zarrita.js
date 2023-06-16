@@ -58,7 +58,9 @@ export async function get<
 			arr.get_chunk(chunk_coords, opts.opts)
 				.then(({ data, shape, stride }) => {
 					const chunk = setter.prepare(data, shape, stride);
+          console.log("Get, chunk: ", chunk)
 					setter.set_from_chunk(out, chunk, mapping);
+          console.log("Get, out: ", out)
 				})
 				.catch((err) => {
 					// re-throw error if not a missing chunk

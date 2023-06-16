@@ -176,12 +176,12 @@ function set_from_chunk<D extends Exclude<DataType, ByteStr | UnicodeStr | Bool>
 	const [from, to, step] = proj.to;
 	const [sfrom, _, sstep] = proj.from;
 	const len = indices_len(from, to, step);
-  console.log("src", src.data);
 
 	if (projs.length === 0) {
 		if (
 			step === 1 && sstep === 1 && dstride === 1 && sstride === 1
 		) {
+      console.log("branch3: ", src.data, sfrom, sfrom + len, from)
 			dest.data.set(src.data.subarray(sfrom, sfrom + len) as any, from);
 		} else {
 			for (let i = 0; i < len; i++) {

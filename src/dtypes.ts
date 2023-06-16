@@ -50,7 +50,8 @@ export type DataType =
 	| NumericDataType
 	| BigintDataType
 	| StringDataType
-	| Bool;
+	| Bool
+  | PyObject;
 
 export type TypedArray<D extends DataType> = D extends Int8 ? Int8Array
 	: D extends Int16 ? Int16Array
